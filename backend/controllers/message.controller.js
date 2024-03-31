@@ -30,6 +30,8 @@ export const sendMessage = async (req, res) => {
             { participants : { $all: [senderId, recieverId] } },
             { $push: { messages: newMessage._id } }
         );
+        // Socket.io code goes here
+
         // await newMessage.save();
         // await conversation.save();
         await Promise.all([newMessage.save(), conversation.save()]); //this runs in parallel.
