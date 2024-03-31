@@ -6,6 +6,7 @@ dotenv.config();
 import connectDB from './db/connectToMongoDB.js';
 import authRoutes from './routes/auth.route.js';
 import messageRoutes from './routes/message.route.js';
+import userRoutes from './routes/user.route.js';
 
 
 const PORT = process.env.PORT || 5000;
@@ -16,6 +17,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
+app.use("/api/user", userRoutes);
 
 
 app.get("/", (req,res)=>{
