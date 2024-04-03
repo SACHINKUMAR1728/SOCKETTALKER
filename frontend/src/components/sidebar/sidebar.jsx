@@ -1,14 +1,15 @@
-import React from 'react'
 
-const sidebar = () => {
+import SearchInput from './SearchInput.jsx';
+
+const Sidebar = () => {
   return (
     <div>
         <SearchInput/>
         <div className='divider px-3'></div>
-        <Conversations/>
-        <Logout/>
+        {/* <Conversations/>
+        <Logout/> */}
     </div>
   )
 }
 
-export default sidebar;
+export default Sidebar;
