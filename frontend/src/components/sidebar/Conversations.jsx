@@ -1,7 +1,13 @@
-import Conversation from "./Conversation"
+import React from 'react'
+import Conversation from "./Conversation.jsx"
+import useGetConversations from '../../hooks/useGetConversations.js'
 
 
 const Conversations = () => {
+    const {loading, conversations} = useGetConversations();
+    console.log("reached");
+    console.log(conversations);
+
   return (
     <div className="py-2 flex flex-col overflow-auto">
         <Conversation/>
@@ -13,4 +19,4 @@ const Conversations = () => {
   )
 }
 
-export default Conversations
+export default Conversations;
