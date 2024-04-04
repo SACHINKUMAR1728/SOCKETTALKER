@@ -4,13 +4,16 @@ import generateToken from "../utils/generatetoken.js";
 
 export const signup = async (req, res) => {
     try {
-        const { fullname, username, password, confirmpassword, gender } = req.body;
-        if (password !== confirmpassword) {
-            res.status(400).json({ message: "Passwords do not match" });
+
+        const { fullname, username, password, confirm, gender } = req.body;
+       
+        if (password !== confirm) {
+            return res.status(400).json({ message: "Passwords do not match" });
         }
         const user = await User.findOne({ username });
         if (user) {
-            res.status(400).json({ message: "User already exists" });
+            console.log("User already exists");
+            return res.status(400).json({ message: "User already exists" });
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -24,8 +27,8 @@ export const signup = async (req, res) => {
             password: hashedPassword,
             gender,
             profilepic: gender === "male" ? boyprofile : girlprofile
-        })
-        if (newUser) {
+        });
+        if (newUser) {           
             generateToken(newUser._id, res);
             await newUser.save();
 
@@ -35,6 +38,7 @@ export const signup = async (req, res) => {
                 username: newUser.username,
                 profilepic: newUser.profilepic
             })
+            console.log("User created successfully");
 
         }
     }
