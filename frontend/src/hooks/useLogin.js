@@ -7,8 +7,9 @@ import toast from "react-hot-toast";
 const useLogin = () => {
     const [loading, setloading] = useState(false);
     const { setAuthUser } = useAuthContext();
+
     const login = async (username, password) => {
-        const success = handleInputError({ username, password });
+        const success = handleInputError(username, password);
         if (!success) {
             return;
         }
@@ -19,23 +20,22 @@ const useLogin = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    username,
-                    password
-                }),
+                body: JSON.stringify({ username ,password }),
                 credentials: "include",
             })
             const data = await res.json();
             if (data.error) {
                 throw new Error(data.error);
             }
+            if (!res.ok) {
+                throw new Error(data.message);
+            }
 
             localStorage.setItem("chat-user", JSON.stringify(data));
             setAuthUser(data);
 
         } catch (error) {
-            console.log(error);
-
+            toast.error(error.message);
         } finally {
             setloading(false);
 
@@ -46,7 +46,7 @@ const useLogin = () => {
 
 export default useLogin;
 
-function handleInputError({ username, password }) {
+function handleInputError(username, password) {
     if (!username || !password) {
         toast.error('Please fill all the fields');
         return false;
