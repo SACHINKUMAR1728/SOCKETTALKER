@@ -1,5 +1,6 @@
 
 SOCKETTALKER
+
 This is a real-time chat application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack along with Socket.IO for WebSocket-based communication.
 
 Features
