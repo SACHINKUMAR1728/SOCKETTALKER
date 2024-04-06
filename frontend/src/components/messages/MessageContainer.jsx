@@ -8,6 +8,7 @@ import { useAuthContext } from '../../context/AuthContext';
 
 const MessageContainer = () => {
     const {selectedConversation, setselectedConversation} = useConversation();
+    console.log('selectedConversation', selectedConversation);
     useEffect(() => {
         // cleanup function (unmounts)
         return () => setselectedConversation(null);
@@ -17,8 +18,9 @@ const MessageContainer = () => {
         <div className='md:min-w-[450px] flex flex-col'>
             {!selectedConversation ? <NoChatSelected /> : 
             (<>
-            <div className='bg-slate-500 px-4 py-2 mb-2'>
-                <span className='label-text'></span><span className='text-gray-900 font-bold'>{selectedConversation.fullname}</span>
+            <div className=' flex bg-gray-700 px-4 py-2 mb-2 justify-between'>
+                <img src={selectedConversation.profilepic} className='w-7 rounded-full' alt="userimg" />
+                <span className='text-white font-bold mx-auto'>{selectedConversation.fullname}</span>
             </div>
 
             <Messages />
