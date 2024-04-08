@@ -5,8 +5,9 @@ const generateToken = (userid, res) => {
     });
     res.cookie("jwt", token, {
         maxAge: 15 * 24 * 60 * 60 * 1000,
-        httpOnly: true, // cookie cannot be accessed or modified by the browser
-        secure: "true" // cookie is sent only over HTTPS
+        // httpOnly: true, // cookie cannot be accessed or modified by the browser
+        // sameSite: "None", // cookie is sent in cross-origin requests
+        // secure: "true" // cookie is sent only over HTTPS
     });
 };
 
