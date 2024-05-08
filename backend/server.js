@@ -19,7 +19,7 @@ const PORT = 5000  ;
 const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({credentials: true, origin: 'http://10.1.75.44:5000'}));
+app.use(cors({credentials: true, origin: 'http://localhost:5000'}));
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
@@ -37,7 +37,7 @@ app.get("/", (req,res)=>{
     res.send('API is running');
 });
 
-const Host = 'http://10.1.75.44:5000'
+const Host = 'http://localhost:5000'
 server.listen(PORT, Host, async ()=>{
     connectDB();
     console.log(`Server is running on port ${PORT}`);
