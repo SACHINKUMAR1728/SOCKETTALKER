@@ -37,8 +37,8 @@ app.get("/", (req,res)=>{
     res.send('API is running');
 });
 
-const Host = 'http://localhost:5000'
-server.listen(PORT, Host, async ()=>{
+// const Host = 'http://localhost:5000'
+server.listen(PORT, async ()=>{
     connectDB();
     console.log(`Server is running on port ${PORT}`);
 })
